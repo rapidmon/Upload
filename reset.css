@@ -1,0 +1,36 @@
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,img,strong,b,ol,ul,li,caption,article,canvas,figure,figcaption,footer,header,menu,nav,section,input {
+	margin: 0;
+	padding: 0;
+}
+
+article,aside,details,figcaption,figure,footer,header,menu,nav,
+section {
+	display: block;
+}
+
+ol,ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+.ally {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
+
+.hidden {
+	opacity: 0;
+}
+
+img {
+	width: 100%;
+	vertical-align: top;
+}
