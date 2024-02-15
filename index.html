@@ -47,6 +47,7 @@
                 alert('트윗이 예약되었습니다!');
             } else {
                 console.error('Failed to schedule tweet');
+                console.log(response);
                 alert('트윗 예약에 실패했습니다.');
             }
         } catch (error) {
