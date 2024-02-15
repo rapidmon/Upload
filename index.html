@@ -34,13 +34,7 @@
     
         try {
             // Fetch API를 사용하여 데이터 전송
-            const response = await fetch(apiEndpoint, {
-                method: 'POST',
-                body: JSON.stringify(tweetData),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await fetch(apiEndpoint, {mode: 'no-cors'});
     
             if (response.ok) {
                 console.log('Tweet scheduled successfully');
