@@ -13,24 +13,27 @@
         <input type="text" placeholder="기사 요약" name="summary" id="summary">
         <input type="url" placeholder="링크" name="link" id="link">
         <input type="datetime-local" name="schedule" id="schedule">
+        <input type="text" name="code" id="code">
         <input type="button" value="submit" id="submitBtn">
     </form>
 </body>
 <script>
     document.getElementById('submitBtn').addEventListener('click', async function() {
-        var summary = document.getElementById('summary').value;
-        var link = document.getElementById('link').value;
-        var schedule = document.getElementById('schedule').value;
+        const summary = document.getElementById('summary').value;
+        const link = document.getElementById('link').value;
+        const schedule = document.getElementById('schedule').value;
+        const code = document.getElementById('code').value;
     
         // API Gateway 엔드포인트로 전송할 데이터 객체
-        var tweetData = {
+        const tweetData = {
             summary: summary,
             link: link,
-            schedule: schedule
+            schedule: schedule,
+            code: code
         };
     
         // API Gateway 엔드포인트 URL
-        var apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/Stage/tweet';
+        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/Stage/tweet';
     
         try {
             // Fetch API를 사용하여 데이터 전송
