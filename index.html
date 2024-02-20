@@ -5,16 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>트위터 예약 전송 프로그램</title>
+    <link rel="icon" href="https://image.donga.com/pc/2022/images/common/favicon.ico">
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./reset.css">
 </head>
 <body>
-    <form id="tweetForm">
-        <input type="text" placeholder="기사 요약" name="summary" id="summary">
-        <input type="url" placeholder="링크" name="link" id="link">
-        <input type="datetime-local" name="schedule" id="schedule">
-        <input type="text" placeholder="입력 코드" name="code" id="code">
-        <input type="button" value="submit" id="submitBtn">
+    <form id="submitForm">
+        <fieldset>
+            <legend>SNS 업로드 예약</legend>
+            <div>
+                <label>기사 요약문</label><input type="text" placeholder="기사 요약" name="summary" id="summary">
+            </div>
+            <div>
+                <label>기사 링크</label><input type="url" placeholder="링크" name="link" id="link">
+            </div>
+            <div>
+                <label>업로드 시간</label><input type="datetime-local" name="schedule" id="schedule">
+            </div>
+            <div>
+                <label>보안 코드</label><input type="text" placeholder="입력 코드" name="code" id="code">
+            </div>
+            <div>
+                <input type="button" value="submit" id="submitBtn">
+            </div>
+        </fieldset>
     </form>
 </body>
 <script>
