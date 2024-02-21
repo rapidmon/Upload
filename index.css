@@ -53,6 +53,13 @@ fieldset div {
     margin-bottom: 20px;
 }
 
+fieldset div p {
+    font-size: 10px;
+    color: red;
+    margin-left: 40%;
+    padding-top: 10px;
+}
+
 label {
     display: inline-block;
     color: #666;

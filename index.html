@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>트위터 예약 전송 프로그램</title>
+    <title>SNS 예약 전송 프로그램</title>
     <link rel="icon" href="https://image.donga.com/pc/2022/images/common/favicon.ico">
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./reset.css">
@@ -15,15 +15,19 @@
             <legend>SNS 업로드 예약</legend>
             <div>
                 <label>기사 요약문</label><input type="text" placeholder="기사 요약" name="summary" id="summary">
+                <p id="summaryError"></p>
             </div>
             <div>
                 <label>기사 링크</label><input type="url" placeholder="링크" name="link" id="link">
+                <p id="linkError"></p>
             </div>
             <div>
                 <label>업로드 시간</label><input type="datetime-local" name="schedule" id="schedule">
+                <p id="scheduleError"></p>
             </div>
             <div>
                 <label>보안 코드</label><input type="text" placeholder="입력 코드" name="code" id="code">
+                <p id="codeError"></p>
             </div>
             <div>
                 <input type="button" value="submit" id="submitBtn">
@@ -37,7 +41,42 @@
         const link = document.getElementById('link').value;
         const schedule = document.getElementById('schedule').value;
         const code = document.getElementById('code').value;
-    
+        let isValid = true;
+        
+        // 오류 메시지 초기화
+        document.getElementById('summaryError').textContent = '';
+        document.getElementById('linkError').textContent = '';
+        document.getElementById('scheduleError').textContent = '';
+        document.getElementById('codeError').textContent = '';
+        
+        // 기사 요약문 검증
+        if (!summary.trim()) {
+            document.getElementById('summaryError').textContent = '기사 요약문을 입력해주세요.';
+            isValid = false;
+        }
+        
+        // 기사 링크 검증 (URL 형식)
+        if (!link.trim() || !/^https?:\/\/.+/i.test(link)) {
+            document.getElementById('linkError').textContent = '올바른 링크 형식을 입력해주세요.';
+            isValid = false;
+        }
+        
+        // 업로드 시간 검증
+        if (!schedule.trim()) {
+            document.getElementById('scheduleError').textContent = '업로드 시간을 설정해주세요.';
+            isValid = false;
+        }
+        
+        // 보안 코드 검증
+        if (!code.trim()) {
+            document.getElementById('codeError').textContent = '보안 코드를 입력해주세요.';
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            return; // 유효성 검사 실패 시, API 호출 중단
+        }
+
         // API Gateway 엔드포인트로 전송할 데이터 객체
         const tweetData = {
             summary: summary,
@@ -65,12 +104,12 @@
             } else {
                 console.error('Failed to schedule tweet');
                 console.log(response);
-                alert('트윗 예약에 실패했습니다.');
+                alert('트윗 예약에 실패했습니다. 보안 코드를 확인해주세요');
             }
         } catch (error) {
             console.error('Error:', error);
             alert('트윗 예약 중 에러가 발생했습니다.');
         }
     });
-    </script>
+</script>
 </html>
