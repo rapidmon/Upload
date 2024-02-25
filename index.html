@@ -100,15 +100,15 @@
     
             if (response.ok) {
                 console.log('Tweet scheduled successfully');
-                alert('트윗이 예약되었습니다!');
+                alert('기사가 예약되었습니다!');
             } else {
                 console.error('Failed to schedule tweet');
                 console.log(response);
-                alert('트윗 예약에 실패했습니다. 보안 코드를 확인해주세요');
+                alert('기사 예약에 실패했습니다. 보안 코드를 확인해주세요');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('트윗 예약 중 에러가 발생했습니다.');
+            alert('기사 예약 중 에러가 발생했습니다.');
         }
     });
 </script>
