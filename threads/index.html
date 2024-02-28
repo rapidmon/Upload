@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>threads 예약 전송 프로그램</title>
+    <link rel="icon" href="https://image.donga.com/pc/2022/images/common/favicon.ico">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./reset.css">
+</head>
+<body>
+    <form id="submitForm">
+        <fieldset>
+            <legend>threads 업로드 예약</legend>
+            <div>
+                <label>기사 요약문</label><input type="text" placeholder="기사 요약" name="summary" id="summary">
+                <p id="summaryError"></p>
+            </div>
+            <div>
+                <label>기사 링크</label><input type="url" placeholder="링크" name="link" id="link">
+                <p id="linkError"></p>
+            </div>
+            <div>
+                <label>이미지 업로드</label><input type="file" name="image" id="image">
+                <p id="imageError"></p>
+            </div>
+            <div>
+                <label>업로드 시간</label><input type="datetime-local" name="schedule" id="schedule">
+                <p id="scheduleError"></p>
+            </div>
+            <div>
+                <label>보안 코드</label><input type="text" placeholder="입력 코드" name="code" id="code">
+                <p id="codeError"></p>
+            </div>
+            <div>
+                <input type="button" value="submit" id="submitBtn">
+            </div>
+        </fieldset>
+    </form>
+</body>
+<script>
+    document.getElementById('submitBtn').addEventListener('click', async function() {
+        const summary = document.getElementById('summary').value;
+        const link = document.getElementById('link').value;
+        const image = document.getElementById('image').files[0];
+        const schedule = document.getElementById('schedule').value;
+        const code = document.getElementById('code').value;
+        let isValid = true;
+        
+        // 오류 메시지 초기화
+        document.getElementById('summaryError').textContent = '';
+        document.getElementById('linkError').textContent = '';
+        document.getElementById('scheduleError').textContent = '';
+        document.getElementById('codeError').textContent = '';
+        
+        // 기사 요약문 검증
+        if (!summary.trim()) {
+            document.getElementById('summaryError').textContent = '기사 요약문을 입력해주세요.';
+            isValid = false;
+        }
+        
+        // 기사 링크 검증 (URL 형식)
+        if (!link.trim() || !/^https?:\/\/.+/i.test(link)) {
+            document.getElementById('linkError').textContent = '올바른 링크 형식을 입력해주세요.';
+            isValid = false;
+        }
+        
+        // 업로드 시간 검증
+        if (!schedule.trim()) {
+            document.getElementById('scheduleError').textContent = '업로드 시간을 설정해주세요.';
+            isValid = false;
+        }
+        
+        // 보안 코드 검증
+        if (!code.trim()) {
+            document.getElementById('codeError').textContent = '보안 코드를 입력해주세요.';
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            return; // 유효성 검사 실패 시, API 호출 중단
+        }
+
+        // API Gateway 엔드포인트로 전송할 데이터 객체
+        const tweetData = {
+            summary: summary,
+            link: link,
+            schedule: schedule,
+            code: code
+        };
+    
+        // API Gateway 엔드포인트 URL
+        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/Stage/tweet';
+    
+        try {
+            // Fetch API를 사용하여 데이터 전송
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                body: JSON.stringify(tweetData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (response.ok) {
+                console.log('Tweet scheduled successfully');
+                alert('기사가 예약되었습니다!');
+            } else {
+                console.error('Failed to schedule tweet');
+                console.log(response);
+                alert('기사 예약에 실패했습니다. 보안 코드를 확인해주세요');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('기사 예약 중 에러가 발생했습니다.');
+        }
+    });
+</script>
+</html>
