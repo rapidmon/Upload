@@ -36,7 +36,9 @@
     </form>
 </body>
 <script>
-    document.getElementById('submitBtn').addEventListener('click', async function() {
+    const submitBtn = document.getElementById('submitBtn');
+
+    submitBtn.addEventListener('click', async function() {
         const summary = document.getElementById('summary');
         const link = document.getElementById('link');
         const schedule = document.getElementById('schedule');
@@ -88,6 +90,9 @@
             return; // API 호출 중단
         }
 
+        // 버튼 비활성화
+        submitBtn.disabled = true;
+
         // API Gateway 엔드포인트로 전송할 데이터 객체
         const tweetData = {
             summary: summary.value,
@@ -130,6 +135,7 @@
             link.disabled = false;
             schedule.disabled = false;
             code.disabled = false;
+            submitBtn.disabled = false;
         }
     });
 </script>
