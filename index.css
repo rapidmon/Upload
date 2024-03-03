@@ -40,6 +40,7 @@ fieldset {
     border: 1px solid #ddd;
     padding: 30px 20px 0px 20px;
     border-radius: 8px;
+    margin: 0;
 }
 
 legend {
@@ -102,15 +103,93 @@ input[type="button"]:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background-color: white;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
     max-height: 160px;
+    overflow: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.reserve-list::-webkit-scrollbar{
+    display: none;
 }
 
 .reserve{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    padding: 10px 0;
+}
+
+.reserve:nth-child(2){
+    background-color: rgb(148, 148, 148);
+}
+
+.reserve:last-child{
+    border-bottom: 1px solid #ccc;
+}
+
+.reserve p, .reserve div{
+    text-align: center;
+    border-right: 1px solid #ccc;
+    height: 100%;
+}
+
+.reserve p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.reserve-summary{
+    width: 15%;
+}
+
+.reserve-link{
+    width: 15%;
+}
+
+.reserve-time{
+    width: 40%;
+}
+
+.reserve .reserve-edit{
+    width: 30%;
+    border-right: none;
+}
+
+.reserve .tool-btn{
+    width: 30%;
+    display: flex;
     justify-content: center;
     align-items: center;
+    border-right: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.tool-btn button{
+    border: none;
+}
+
+.get-reserve-list{
+    width: calc(100% - 40px);
+    margin-bottom: 20px;
+}
+
+.get-reserve-list-btn{
+    background-color: #008689;
+    width: 100%;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
 }
