@@ -17,18 +17,19 @@ html, body{
 
 body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: linear-gradient(-45deg, #d4a191, #cf89a4, #7ebdd4, #008689);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
+    gap: 20px;
 }
 
 #submitForm {
     font-family: Arial, sans-serif;
     width: 80%;
     max-width: 600px;
-    margin: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -90,4 +91,26 @@ input[type="button"] {
 
 input[type="button"]:hover {
     background-color: #00B5B8; /* 버튼 호버 시 더 진한 녹색 */
+}
+
+.reserve-list{
+    font-family: Arial, sans-serif;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 160px;
+}
+
+.reserve{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
