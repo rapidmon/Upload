@@ -13,6 +13,7 @@
 html, body{
     width: 100%;
     height: 100%;
+    font-family: Inter, "Spoqa Han Sans Neo", "sans-serif";
 }
 
 body{
@@ -26,8 +27,11 @@ body{
     gap: 20px;
 }
 
+button{
+    font-family: Inter, "Spoqa Han Sans Neo", "sans-serif";
+}
+
 #submitForm {
-    font-family: Arial, sans-serif;
     width: 80%;
     max-width: 600px;
     padding: 20px;
@@ -45,10 +49,9 @@ fieldset {
 
 legend {
     padding: 5px 10px;
-    /* background-color: #efefef; */
     border-radius: 4px;
     color: #333;
-    font-size: 1.2em;
+    font-size: 24px;
 }
 
 fieldset div {
@@ -56,7 +59,7 @@ fieldset div {
 }
 
 fieldset div p {
-    font-size: 10px;
+    font-size: 16px;
     color: red;
     margin-left: 40%;
     padding-top: 10px;
@@ -87,15 +90,13 @@ input[type="button"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1em;
 }
 
 input[type="button"]:hover {
     background-color: #00B5B8; /* 버튼 호버 시 더 진한 녹색 */
 }
 
-.reserve-list{
-    font-family: Arial, sans-serif;
+.reserve-list-up{
     width: 80%;
     max-width: 600px;
     padding: 20px;
@@ -103,14 +104,22 @@ input[type="button"]:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background-color: white;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.reserve-list{
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    width: 100%;
     max-height: 160px;
     overflow: hidden;
     overflow-y: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    position: relative;
 }
 
 .reserve-list::-webkit-scrollbar{
@@ -125,10 +134,13 @@ input[type="button"]:hover {
     border: 1px solid #ccc;
     border-bottom: none;
     padding: 10px 0;
+    font-size: 12px;
 }
 
-.reserve:nth-child(2){
+.reserve:nth-child(1){
     background-color: rgb(148, 148, 148);
+    position: sticky;
+    top: 0;
 }
 
 .reserve:last-child{
@@ -139,6 +151,7 @@ input[type="button"]:hover {
     text-align: center;
     border-right: 1px solid #ccc;
     height: 100%;
+    font-size: 12px;
 }
 
 .reserve p{
@@ -150,11 +163,11 @@ input[type="button"]:hover {
 }
 
 .reserve-summary{
-    width: 15%;
+    width: 17.5%;
 }
 
 .reserve-link{
-    width: 15%;
+    width: 17.5%;
 }
 
 .reserve-time{
@@ -162,12 +175,12 @@ input[type="button"]:hover {
 }
 
 .reserve .reserve-edit{
-    width: 30%;
+    width: 25%;
     border-right: none;
 }
 
 .reserve .tool-btn{
-    width: 30%;
+    width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,18 +191,19 @@ input[type="button"]:hover {
 
 .tool-btn button{
     border: none;
-}
-
-.get-reserve-list{
-    width: calc(100% - 40px);
-    margin-bottom: 20px;
+    font-size: 12px;
 }
 
 .get-reserve-list-btn{
+    width: calc(100% - 40px);
     background-color: #008689;
-    width: 100%;
     color: white;
     padding: 10px 20px;
     border: none;
+    cursor: pointer;
     border-radius: 4px;
+}
+
+.get-reserve-list-btn:hover{
+    background-color: #00B5B8;
 }

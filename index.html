@@ -8,6 +8,11 @@
     <link rel="icon" href="https://image.donga.com/pc/2022/images/common/favicon.ico">
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <form id="submitForm">
@@ -34,62 +39,62 @@
             </div>
         </fieldset>
     </form>
-    <ul class="reserve-list">
-        <li class="get-reserve-list">
-            <button class="get-reserve-list-btn">예약 목록 불러오기</button>
-        </li>
-        <li class="reserve">
-            <p class="reserve-summary">기사 요약</p>
-            <p class="reserve-link">기사 링크</p>
-            <p class="reserve-time">예약 시간</p>
-            <p class="reserve-edit">편집</p>
-        </li>
-        <li class="reserve">
-            <p class="reserve-summary">어쩌고저쩌고</p>
-            <p class="reserve-link">링크</p>
-            <p class="reserve-time">24/03/03 09:20</p>
-            <div class="tool-btn">
-                <button class="edit-btn">수정</button>
-                <button class="delete-btn">삭제</button>
-            </div>
-        </li>
-        <li class="reserve">
-            <p class="reserve-summary">어쩌고저쩌고</p>
-            <p class="reserve-link">링크</p>
-            <p class="reserve-time">24/03/03 09:20</p>
-            <div class="tool-btn">
-                <button class="edit-btn">수정</button>
-                <button class="delete-btn">삭제</button>
-            </div>
-        </li>
-        <li class="reserve">
-            <p class="reserve-summary">어쩌고저쩌고</p>
-            <p class="reserve-link">링크</p>
-            <p class="reserve-time">24/03/03 09:20</p>
-            <div class="tool-btn">
-                <button class="edit-btn">수정</button>
-                <button class="delete-btn">삭제</button>
-            </div>
-        </li>
-        <li class="reserve">
-            <p class="reserve-summary">어쩌고저쩌고</p>
-            <p class="reserve-link">링크</p>
-            <p class="reserve-time">24/03/03 09:20</p>
-            <div class="tool-btn">
-                <button class="edit-btn">수정</button>
-                <button class="delete-btn">삭제</button>
-            </div>
-        </li>
-        <li class="reserve">
-            <p class="reserve-summary">어쩌고저쩌고</p>
-            <p class="reserve-link">링크</p>
-            <p class="reserve-time">24/03/03 09:20</p>
-            <div class="tool-btn">
-                <button class="edit-btn">수정</button>
-                <button class="delete-btn">삭제</button>
-            </div>
-        </li>
-    </ul>
+    <section class="reserve-list-up">
+        <button class="get-reserve-list-btn">예약 목록 불러오기</button>
+        <ul class="reserve-list">
+            <li class="reserve">
+                <p class="reserve-summary">기사 요약</p>
+                <p class="reserve-link">기사 링크</p>
+                <p class="reserve-time">예약 시간</p>
+                <p class="reserve-edit">편집</p>
+            </li>
+            <li class="reserve">
+                <p class="reserve-summary">어쩌고저쩌고</p>
+                <p class="reserve-link">링크</p>
+                <p class="reserve-time">24/03/03 09:20</p>
+                <div class="tool-btn">
+                    <button class="edit-btn">수정</button>
+                    <button class="delete-btn">삭제</button>
+                </div>
+            </li>
+            <li class="reserve">
+                <p class="reserve-summary">어쩌고저쩌고</p>
+                <p class="reserve-link">링크</p>
+                <p class="reserve-time">24/03/03 09:20</p>
+                <div class="tool-btn">
+                    <button class="edit-btn">수정</button>
+                    <button class="delete-btn">삭제</button>
+                </div>
+            </li>
+            <li class="reserve">
+                <p class="reserve-summary">어쩌고저쩌고</p>
+                <p class="reserve-link">링크</p>
+                <p class="reserve-time">24/03/03 09:20</p>
+                <div class="tool-btn">
+                    <button class="edit-btn">수정</button>
+                    <button class="delete-btn">삭제</button>
+                </div>
+            </li>
+            <li class="reserve">
+                <p class="reserve-summary">어쩌고저쩌고</p>
+                <p class="reserve-link">링크</p>
+                <p class="reserve-time">24/03/03 09:20</p>
+                <div class="tool-btn">
+                    <button class="edit-btn">수정</button>
+                    <button class="delete-btn">삭제</button>
+                </div>
+            </li>
+            <li class="reserve">
+                <p class="reserve-summary">어쩌고저쩌고</p>
+                <p class="reserve-link">링크</p>
+                <p class="reserve-time">24/03/03 09:20</p>
+                <div class="tool-btn">
+                    <button class="edit-btn">수정</button>
+                    <button class="delete-btn">삭제</button>
+                </div>
+            </li>
+        </ul>
+    </section>
 </body>
 <script>
     const submitBtn = document.getElementById('submitBtn');
@@ -158,7 +163,7 @@
         };
     
         // API Gateway 엔드포인트 URL
-        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/Stage/tweet';
+        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/tweet';
     
         try {
             // Fetch API를 사용하여 데이터 전송
@@ -194,5 +199,35 @@
             submitBtn.disabled = false;
         }
     });
+
+    const listUpBtn = document.querySelector(".get-reserve-list-btn");
+
+    listUpBtn.addEventListener('click', () => {
+        const userInput = prompt("코드를 입력해주세요:", ""); // 사용자에게 입력 요청
+        if (userInput !== null) {
+            fetch('https://3upnr8bvj9.execute-api.ap-southeast-2.amazonaws.com/Listup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userInput: userInput }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                // 여기에 데이터를 화면에 표시하는 로직을 추가하세요.
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        } else {
+            console.log("사용자 입력 취소");
+        }
+    })
 </script>
 </html>
