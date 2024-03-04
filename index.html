@@ -213,6 +213,27 @@
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'delete-btn';
                     deleteBtn.textContent = '삭제';
+                    deleteBtn.setAttribute('data-news-link', item.News);
+                    deleteBtn.setAttribute('data-reserved-time', item.ReservedTime);
+
+                    deleteBtn.addEventListener('click', function() {
+                        const newsLink = this.getAttribute('data-news-link');
+                        const reservedTime = this.getAttribute('data-reserved-time');
+                        // fetch(`https://your-api-gateway-url/items/${itemId}`, {
+                        //     method: 'DELETE'
+                        // })
+                        // .then(response => response.json())
+                        // .then(data => {
+                        //     if (data.message === 'Item deleted successfully') {
+                        //         console.log('Item deleted');
+                        //         // 삭제 성공 시, UI에서 해당 항목을 제거할 수 있습니다.
+                        //         event.target.closest('.reserve').remove();
+                        //     }
+                        // })
+                        // .catch(error => {
+                        //     console.error('Error deleting item:', error);
+                        // });
+                    });
 
                     // 버튼을 div에 추가합니다.
                     toolBtnDiv.appendChild(editBtn);
