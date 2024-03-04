@@ -111,7 +111,7 @@ input[type="button"]:hover {
 }
 
 .reserve-list{
-    display: flex;
+    display: none;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
@@ -147,19 +147,27 @@ input[type="button"]:hover {
     border-bottom: 1px solid #ccc;
 }
 
-.reserve p, .reserve div{
+.reserve p, .reserve a, .reserve div{
     text-align: center;
     border-right: 1px solid #ccc;
     height: 100%;
     font-size: 12px;
 }
 
-.reserve p{
+.reserve p, .reserve a{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 0 10px;
     box-sizing: border-box;
+}
+
+.reserve a{
+    text-decoration: underline;
+}
+
+.reserve a:hover{
+    color: #00B5B8;
 }
 
 .reserve-summary{
@@ -172,6 +180,9 @@ input[type="button"]:hover {
 
 .reserve-time{
     width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .reserve .reserve-edit{
