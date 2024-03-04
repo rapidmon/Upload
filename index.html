@@ -118,7 +118,7 @@
         };
     
         // API Gateway 엔드포인트 URL
-        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/tweet';
+        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/upload';
     
         try {
             // Fetch API를 사용하여 데이터 전송
@@ -161,7 +161,7 @@
     listUpBtn.addEventListener('click', () => {
         const userInput = prompt("코드를 입력해주세요:", ""); // 사용자에게 입력 요청
         if (userInput !== null) {
-            fetch('https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/upload', {
+            fetch('https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/listup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
