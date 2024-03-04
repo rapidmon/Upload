@@ -205,6 +205,14 @@ input[type="button"]:hover {
     font-size: 12px;
 }
 
+.delete-btn{
+    cursor: pointer;
+}
+
+.delete-btn:hover{
+    background-color: rgb(224, 224, 224);
+}
+
 .get-reserve-list-btn{
     width: calc(100% - 40px);
     background-color: #008689;
