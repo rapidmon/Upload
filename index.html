@@ -176,96 +176,110 @@
             })
             .then(data => {
                 reserveList.style.display = "flex";
-                data.Items.forEach(item => {
-                    // 새로운 li 요소를 생성합니다.
+                if(data.Items.length === 0){
                     const li = document.createElement('li');
                     li.className = 'reserve';
 
-                    // 각 내용을 담을 p 요소를 생성합니다.
-                    const summary = document.createElement('p');
-                    summary.className = 'reserve-summary';
-                    summary.textContent = item.summary;
+                    const none = document.createElement('p');
+                    none.className = 'reserve-none';
+                    none.textContent = "예약된 기사가 없습니다.";
 
-                    const linkElement = document.createElement('a');
-                    linkElement.href = item.News;
-                    linkElement.textContent = '링크';
-                    linkElement.className = 'reserve-link';
-
-                    const time = document.createElement('p');
-                    time.className = 'reserve-time';
-                    const date = new Date(item.ReservedTime);
-                    const formattedDate = date.getFullYear().toString().slice(2) + "/" + 
-                                        ("0" + (date.getMonth() + 1)).slice(-2) + "/" + 
-                                        ("0" + date.getDate()).slice(-2) + " " + 
-                                        ("0" + date.getHours()).slice(-2) + ":" + 
-                                        ("0" + date.getMinutes()).slice(-2);
-                    time.textContent = formattedDate;
-
-                    // 버튼을 담을 div 요소를 생성합니다.
-                    const toolBtnDiv = document.createElement('div');
-                    toolBtnDiv.className = 'tool-btn';
-
-                    // 수정 버튼을 생성합니다.
-                    const editBtn = document.createElement('button');
-                    editBtn.className = 'edit-btn';
-                    editBtn.textContent = '수정';
-                    // 삭제 버튼을 생성합니다.
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete-btn';
-                    deleteBtn.textContent = '삭제';
-                    deleteBtn.setAttribute('data-news-link', item.News);
-                    deleteBtn.setAttribute('data-reserved-time', item.ReservedTime);
-
-                    deleteBtn.addEventListener('click', function() {
-                        // 사용자에게 삭제 확인을 요청하는 경고창 표시
-                        const confirmDelete = confirm("정말로 삭제하시겠습니까?");
-                        if (confirmDelete) {
-                            // 사용자가 '확인'을 클릭한 경우, 삭제 로직 수행
-                            const newsLink = this.getAttribute('data-news-link');
-                            const reservedTime = this.getAttribute('data-reserved-time');
-                            fetch(`https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/delete`, {
-                                method: 'DELETE',
-                                body: JSON.stringify({ News: newsLink, ReservedTime: reservedTime }),
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(`HTTP error! status: ${response.status}`);
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.message === 'Item deleted successfully') {
-                                    console.log('Item deleted');
-                                    alert('예약이 취소되었습니다.');
-                                    this.closest('.reserve').remove();
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error deleting item:', error);
-                            });
-                        } else {
-                            // 사용자가 '취소'를 클릭한 경우, 아무것도 하지 않음
-                            console.log('Deletion cancelled by the user.');
-                        }
-                    });
-
-                    // 버튼을 div에 추가합니다.
-                    toolBtnDiv.appendChild(editBtn);
-                    toolBtnDiv.appendChild(deleteBtn);
-
-                    // 모든 요소를 li에 추가합니다.
-                    li.appendChild(summary);
-                    li.appendChild(linkElement);
-                    li.appendChild(time);
-                    li.appendChild(toolBtnDiv);
-
-                    // 완성된 li를 .reserve-list에 추가합니다.
+                    li.appendChild(none);
                     reserveList.appendChild(li);
-                })
-                // 여기에 데이터를 화면에 표시하는 로직을 추가하세요.
+                } else {
+                    data.Items.forEach(item => {
+                        // 새로운 li 요소를 생성합니다.
+                        const li = document.createElement('li');
+                        li.className = 'reserve';
+    
+                        // 각 내용을 담을 p 요소를 생성합니다.
+                        const summary = document.createElement('p');
+                        summary.className = 'reserve-summary';
+                        summary.textContent = item.summary;
+                        summary.title = item.summary;
+    
+                        const linkElement = document.createElement('a');
+                        linkElement.href = item.News;
+                        linkElement.textContent = '링크';
+                        linkElement.className = 'reserve-link';
+    
+                        const time = document.createElement('p');
+                        time.className = 'reserve-time';
+                        const date = new Date(item.ReservedTime);
+                        const formattedDate = date.getFullYear().toString().slice(2) + "/" + 
+                                            ("0" + (date.getMonth() + 1)).slice(-2) + "/" + 
+                                            ("0" + date.getDate()).slice(-2) + " " + 
+                                            ("0" + date.getHours()).slice(-2) + ":" + 
+                                            ("0" + date.getMinutes()).slice(-2);
+                        time.textContent = formattedDate;
+    
+                        // 버튼을 담을 div 요소를 생성합니다.
+                        const toolBtnDiv = document.createElement('div');
+                        toolBtnDiv.className = 'tool-btn';
+    
+                        // 수정 버튼을 생성합니다.
+                        const editBtn = document.createElement('button');
+                        editBtn.className = 'edit-btn';
+                        editBtn.textContent = '수정';
+                        editBtn.title = '수정기능은 아직 구현중입니다.';
+    
+                        // 삭제 버튼을 생성합니다.
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-btn';
+                        deleteBtn.textContent = '삭제';
+                        deleteBtn.setAttribute('data-news-link', item.News);
+                        deleteBtn.setAttribute('data-reserved-time', item.ReservedTime);
+    
+                        deleteBtn.addEventListener('click', function() {
+                            // 사용자에게 삭제 확인을 요청하는 경고창 표시
+                            const confirmDelete = confirm("정말로 삭제하시겠습니까?");
+                            if (confirmDelete) {
+                                // 사용자가 '확인'을 클릭한 경우, 삭제 로직 수행
+                                const newsLink = this.getAttribute('data-news-link');
+                                const reservedTime = this.getAttribute('data-reserved-time');
+                                fetch(`https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/delete`, {
+                                    method: 'DELETE',
+                                    body: JSON.stringify({ News: newsLink, ReservedTime: reservedTime }),
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(`HTTP error! status: ${response.status}`);
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    if (data.message === 'Item deleted successfully') {
+                                        console.log('Item deleted');
+                                        alert('예약이 취소되었습니다.');
+                                        this.closest('.reserve').remove();
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error deleting item:', error);
+                                });
+                            } else {
+                                // 사용자가 '취소'를 클릭한 경우, 아무것도 하지 않음
+                                console.log('Deletion cancelled by the user.');
+                            }
+                        });
+    
+                        // 버튼을 div에 추가합니다.
+                        toolBtnDiv.appendChild(editBtn);
+                        toolBtnDiv.appendChild(deleteBtn);
+    
+                        // 모든 요소를 li에 추가합니다.
+                        li.appendChild(summary);
+                        li.appendChild(linkElement);
+                        li.appendChild(time);
+                        li.appendChild(toolBtnDiv);
+    
+                        // 완성된 li를 .reserve-list에 추가합니다.
+                        reserveList.appendChild(li);
+                    })
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);
