@@ -176,6 +176,11 @@
             })
             .then(data => {
                 reserveList.style.display = "flex";
+                Array.from(reserveList.children).forEach((child, index) => {
+                    if (index !== 0) {
+                        reserveList.removeChild(child);
+                    }
+                });
                 if(data.Items.length === 0){
                     const li = document.createElement('li');
                     li.className = 'reserve';
@@ -255,6 +260,18 @@
                                         console.log('Item deleted');
                                         alert('예약이 취소되었습니다.');
                                         this.closest('.reserve').remove();
+                                        console.log(document.querySelector(".reserve-list").children.length)
+                                        if(document.querySelector(".reserve-list").children.length === 1){
+                                            const li = document.createElement('li');
+                                            li.className = 'reserve';
+
+                                            const none = document.createElement('p');
+                                            none.className = 'reserve-none';
+                                            none.textContent = "예약된 기사가 없습니다.";
+
+                                            li.appendChild(none);
+                                            reserveList.appendChild(li);
+                                        }
                                     }
                                 })
                                 .catch(error => {
