@@ -17,7 +17,7 @@
 <body>
     <form id="submitForm">
         <fieldset>
-            <legend>SNS 업로드 예약 (현재 점검중이오니 직접 업로드를 부탁드립니다.)</legend>
+            <legend>SNS 업로드 예약</legend>
             <div>
                 <label>기사 요약문</label><input type="text" placeholder="기사 요약" name="summary" id="summary">
                 <p id="summaryError"></p>
@@ -55,105 +55,105 @@
     const submitBtn = document.getElementById('submitBtn');
 
     submitBtn.addEventListener('click', async function() {
-        alert('현재 점검 중이오니 직접 업로드를 부탁드립니다.');
-        // const summary = document.getElementById('summary');
-        // const link = document.getElementById('link');
-        // const schedule = document.getElementById('schedule');
-        // const code = document.getElementById('code');
-        // let isValid = true;
+        // alert('현재 점검 중이오니 직접 업로드를 부탁드립니다.');
+        const summary = document.getElementById('summary');
+        const link = document.getElementById('link');
+        const schedule = document.getElementById('schedule');
+        const code = document.getElementById('code');
+        let isValid = true;
         
-        // // 오류 메시지 초기화
-        // document.getElementById('summaryError').textContent = '';
-        // document.getElementById('linkError').textContent = '';
-        // document.getElementById('scheduleError').textContent = '';
-        // document.getElementById('codeError').textContent = '';
+        // 오류 메시지 초기화
+        document.getElementById('summaryError').textContent = '';
+        document.getElementById('linkError').textContent = '';
+        document.getElementById('scheduleError').textContent = '';
+        document.getElementById('codeError').textContent = '';
 
-        // // 입력 필드 비활성화
-        // summary.disabled = true;
-        // link.disabled = true;
-        // schedule.disabled = true;
-        // code.disabled = true;
+        // 입력 필드 비활성화
+        summary.disabled = true;
+        link.disabled = true;
+        schedule.disabled = true;
+        code.disabled = true;
         
-        // // 기사 요약문 검증
-        // if (!summary.value.trim()) {
-        //     document.getElementById('summaryError').textContent = '기사 요약문을 입력해주세요.';
-        //     isValid = false;
-        // }
+        // 기사 요약문 검증
+        if (!summary.value.trim()) {
+            document.getElementById('summaryError').textContent = '기사 요약문을 입력해주세요.';
+            isValid = false;
+        }
         
-        // // 기사 링크 검증 (URL 형식)
-        // if (!link.value.trim() || !/^https?:\/\/.+/i.test(link.value)) {
-        //     document.getElementById('linkError').textContent = '올바른 링크 형식을 입력해주세요.';
-        //     isValid = false;
-        // }
+        // 기사 링크 검증 (URL 형식)
+        if (!link.value.trim() || !/^https?:\/\/.+/i.test(link.value)) {
+            document.getElementById('linkError').textContent = '올바른 링크 형식을 입력해주세요.';
+            isValid = false;
+        }
         
-        // // 업로드 시간 검증
-        // if (!schedule.value.trim()) {
-        //     document.getElementById('scheduleError').textContent = '업로드 시간을 설정해주세요.';
-        //     isValid = false;
-        // }
+        // 업로드 시간 검증
+        if (!schedule.value.trim()) {
+            document.getElementById('scheduleError').textContent = '업로드 시간을 설정해주세요.';
+            isValid = false;
+        }
         
-        // // 보안 코드 검증
-        // if (!code.value.trim()) {
-        //     document.getElementById('codeError').textContent = '보안 코드를 입력해주세요.';
-        //     isValid = false;
-        // }
+        // 보안 코드 검증
+        if (!code.value.trim()) {
+            document.getElementById('codeError').textContent = '보안 코드를 입력해주세요.';
+            isValid = false;
+        }
         
-        // if (!isValid) {
-        //     // 유효성 검사 실패 시, 입력 필드 다시 활성화
-        //     summary.disabled = false;
-        //     link.disabled = false;
-        //     schedule.disabled = false;
-        //     code.disabled = false;
-        //     return; // API 호출 중단
-        // }
+        if (!isValid) {
+            // 유효성 검사 실패 시, 입력 필드 다시 활성화
+            summary.disabled = false;
+            link.disabled = false;
+            schedule.disabled = false;
+            code.disabled = false;
+            return; // API 호출 중단
+        }
 
-        // // 버튼 비활성화
-        // submitBtn.disabled = true;
+        // 버튼 비활성화
+        submitBtn.disabled = true;
 
-        // // API Gateway 엔드포인트로 전송할 데이터 객체
-        // const tweetData = {
-        //     summary: summary.value,
-        //     link: link.value,
-        //     schedule: schedule.value,
-        //     code: code.value
-        // };
+        // API Gateway 엔드포인트로 전송할 데이터 객체
+        const tweetData = {
+            summary: summary.value,
+            link: link.value,
+            schedule: schedule.value,
+            code: code.value
+        };
     
-        // // API Gateway 엔드포인트 URL
-        // const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/upload';
+        // API Gateway 엔드포인트 URL
+        const apiEndpoint = 'https://nu0ww2fb5l.execute-api.ap-southeast-2.amazonaws.com/upload';
     
-        // try {
-        //     // Fetch API를 사용하여 데이터 전송
-        //     const response = await fetch(apiEndpoint, {
-        //         method: 'POST',
-        //         body: JSON.stringify(tweetData),
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         }
-        //     });
+        try {
+            // Fetch API를 사용하여 데이터 전송
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                body: JSON.stringify(tweetData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
     
-        //     if (response.ok) {
-        //         console.log('News scheduled successfully');
-        //         alert('기사가 예약되었습니다!');
-        //     } else {
-        //         console.error('Failed to schedule News');
-        //         console.log(response);
-        //         alert('기사 예약에 실패했습니다. 보안 코드를 확인해주세요');
-        //     }
-        // } catch (error) {
-        //     console.error('Error:', error);
-        //     alert('기사 예약 중 에러가 발생했습니다.');
-        // } finally {
-        //     // 입력 필드 다시 활성화 및 초기화
-        //     summary.value = '';
-        //     link.value = '';
-        //     schedule.value = '';
-        //     code.value = '';
-        //     summary.disabled = false;
-        //     link.disabled = false;
-        //     schedule.disabled = false;
-        //     code.disabled = false;
-        //     submitBtn.disabled = false;
-        // }
+            if (response.ok) {
+                console.log('News scheduled successfully');
+                alert('기사가 예약되었습니다!');
+            } else {
+                console.error('Failed to schedule News');
+                console.log(response);
+                alert('기사 예약에 실패했습니다. 보안 코드를 확인해주세요');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('기사 예약 중 에러가 발생했습니다.');
+        } finally {
+            // 입력 필드 다시 활성화 및 초기화
+            summary.value = '';
+            link.value = '';
+            schedule.value = '';
+            code.value = '';
+            summary.disabled = false;
+            link.disabled = false;
+            schedule.disabled = false;
+            code.disabled = false;
+            submitBtn.disabled = false;
+        }
     });
 
     const reserveList = document.querySelector('.reserve-list');
